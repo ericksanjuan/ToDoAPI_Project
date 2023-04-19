@@ -31,8 +31,11 @@ public class ToDo {
         return complete;
     }
 
-    public void setComplete(Boolean complete) {
+    public ToDo setComplete(Boolean complete) {
         this.complete = complete;
+        return null;
     }
+
+
 
 }
