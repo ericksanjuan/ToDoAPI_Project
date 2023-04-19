@@ -36,9 +36,11 @@ public class ToDoControllerTests {
 
     @Test
     public void getAll_UnDone_Todos() throws Exception {
-        toDo.perform(get("/todo"))
+        toDo.perform(get("/todo/list"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("Clean my room"));
+                .andExpect(content().string("[{\"id\":1,\"description\":\"Clean my room\",\"complete\":false}," +
+                        "{\"id\":2,\"description\":\"Dishes\",\"complete\":false},{\"id\":3,\"description\":\"Walk the Dog\",\"complete\":false}]"));
     }
+
 }
