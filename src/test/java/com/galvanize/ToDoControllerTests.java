@@ -98,7 +98,18 @@ public class ToDoControllerTests {
 
     }
 
-
+    @Test
+    public void modifyExistingToDoDescription() throws Exception {
+        String putJson = "{ \"description\": \"Dentist appointment\" }";
+        toDo.perform(put("/todo/modify/4")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(putJson))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(4))
+                .andExpect(jsonPath("$.description").value("Dentist appointment"))
+                .andExpect(jsonPath("$.complete").value(false));
+    }
 
 
 
