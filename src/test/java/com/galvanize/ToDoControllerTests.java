@@ -4,22 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.web.servlet.MockMvc;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import org.springframework.http.MediaType;
-
-import javax.print.attribute.standard.Media;
-import java.util.ArrayList;
-import java.util.List;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
 public class ToDoControllerTests {
@@ -107,6 +102,24 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$.complete").value(false));
     }
 
+    @Test
+    public void getASingleTodo_Success() throws Exception {
+        toDo.perform(get("/todo/3"))
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(3))
+                .andExpect(jsonPath("$.description").value("Walk the Dog"))
+                .andExpect(jsonPath("$.complete").value(false));
+    }
 
+    @Test
+    public void markToDoItemCompleteDontDelete() throws Exception {
+        String patchJson = "{ \"complete\": \"true\" }";
+        toDo.perform(patch("/todo/complete/1"))
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.description").value("Clean my room"))
+                .andExpect(jsonPath("$.complete").value(true));
 
-}
+        }
+    }
+
