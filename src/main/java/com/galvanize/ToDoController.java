@@ -52,4 +52,17 @@ public class ToDoController {
             toDoList.remove(id - 1);
             return toDoList;
     }
+
+    @PutMapping("/modify/{id}")
+    public ToDo putToDo(@PathVariable Integer id, @RequestBody ToDo updatedToDo) {
+            ToDo toDo = null;
+            for(ToDo item : toDoList) {
+                if (item.getId() == id) {
+                    item.setDescription(updatedToDo.getDescription());
+                    toDo = item;
+                }
+            }
+            return toDo;
+    }
+
 }
