@@ -6,6 +6,9 @@ public class ToDo {
 
     private Boolean complete;
 
+    public ToDo(){
+        //default constructor
+    }
     public ToDo(int id, String description) {
         this.id = id;
         this.description = description;
