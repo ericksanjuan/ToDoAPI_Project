@@ -56,7 +56,7 @@ public class ToDoControllerTests {
 
     @Test
     public void getAll_notCompleteTodos() throws Exception {
-        toDo.perform(get("/todo/uncomplete"))
+        toDo.perform(get("/todo/incomplete"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(4)))
@@ -66,7 +66,8 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$[3].id").value(4))
                 .andExpect(jsonPath("$[3].description").value("Brush Teeth"))
                 .andExpect(jsonPath("$[3].complete").value(false));
-
     }
+
+
 
 }

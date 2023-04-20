@@ -29,12 +29,12 @@ public class ToDoController {
             return toDoList;
         }
 
-    @GetMapping("/uncomplete")
-    public List<ToDo> getUndoneTodos(@RequestParam Boolean complete){
+    @GetMapping("/incomplete")
+    public List<ToDo> getUndoneTodos(){
             List<ToDo> noComplete = new ArrayList<>();
-        for(int i = 0; i < toDoList.size();i++) {
-            if (toDoList.get(i).getComplete() == false) {
-                noComplete.add(toDoList.get(i));
+        for (ToDo toDo : toDoList) {
+            if (!toDo.getComplete()) {
+                noComplete.add(toDo);
             }
         }
 
