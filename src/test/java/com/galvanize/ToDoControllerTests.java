@@ -107,6 +107,13 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$.complete").value(false));
     }
 
-
+   @Test
+    public void getASingleTodo_Success() throws Exception{
+        toDo.perform(get("/todo/3"))
+                .andDo(print())
+                .andExpect(jsonPath("$.id").value(3))
+                .andExpect(jsonPath("$.description").value("Walk the Dog"))
+                .andExpect(jsonPath("$.complete").value(false));
+   }
 
 }

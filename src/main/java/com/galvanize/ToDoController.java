@@ -79,4 +79,16 @@ public class ToDoController {
             return toDo;
     }
 
+    @GetMapping("/{id}")
+    public ToDo  getAllTodos(@PathVariable Integer id){
+        ToDo toDo = null;
+        for(ToDo item : toDoList) {
+            if (item.getId() == id) {
+                toDo = item;
+            }
+        }
+        return toDo;
+
+    }
+
 }
