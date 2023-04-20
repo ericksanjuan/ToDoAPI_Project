@@ -68,6 +68,17 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$[3].complete").value(false));
     }
 
-
+    @Test
+    public void addNewToDoItem() throws Exception {
+        String toDoJson = "{ \"id\": \"6\", \"description\": \"Buy groceries\", \"complete\": \"false\" }";
+        toDo.perform(post("/todo/additem")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(toDoJson))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(6))
+                .andExpect(jsonPath("$.description").value("Buy groceries"))
+                .andExpect(jsonPath("$.complete").value(false));
+    }
 
 }
