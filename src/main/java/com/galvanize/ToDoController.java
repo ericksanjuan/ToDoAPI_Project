@@ -46,4 +46,10 @@ public class ToDoController {
             toDoList.add(newToDo);
             return ResponseEntity.status(HttpStatus.CREATED).body(newToDo);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public List<ToDo> removeToDoById(@PathVariable int id) {
+            toDoList.remove(id - 1);
+            return toDoList;
+    }
 }

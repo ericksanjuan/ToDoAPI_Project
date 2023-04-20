@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import org.springframework.http.MediaType;
 
+import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ToDoControllerTests {
 //  "description": "Clean my room",
 //  "complete": false
 //}
+
 //    @Test
 //    public void getTodoList_noParams() throws Exception {
 //            toDo.perform(get("/todo"))
@@ -80,6 +82,17 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$.description").value("Buy groceries"))
                 .andExpect(jsonPath("$.complete").value(false));
     }
+
+    @Test
+    public void deleteToDoItemFromList() throws Exception {
+        toDo.perform(delete("/todo/delete/5"))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+
+    }
+
+
 
 
 
