@@ -10,15 +10,15 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/todo")
 public class ToDoController {
-        List<ToDo> toDoList = new ArrayList<>();
+//        List<ToDo> toDoList = new ArrayList<>();
         public ToDoController() {
-            toDoList.add(new ToDo(1,"Clean my room"));
-            toDoList.add(new ToDo(2,"Dishes"));
-            toDoList.add(new ToDo(3,"Walk the Dog"));
-            toDoList.add(new ToDo(4,"Brush Teeth"));
-            ToDo todo5 =  new ToDo(5,"Study");
-            todo5.setComplete(true);
-            toDoList.add(todo5);
+//            toDoList.add(new ToDo(1,"Clean my room"));
+//            toDoList.add(new ToDo(2,"Dishes"));
+//            toDoList.add(new ToDo(3,"Walk the Dog"));
+//            toDoList.add(new ToDo(4,"Brush Teeth"));
+//            ToDo todo5 =  new ToDo(5,"Study");
+//            todo5.setComplete(true);
+//            toDoList.add(todo5);
         }
 
 

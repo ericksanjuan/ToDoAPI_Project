@@ -1,5 +1,6 @@
 package com.galvanize;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -30,16 +31,18 @@ public class ToDoControllerTests {
 //  "description": "Clean my room",
 //  "complete": false
 //}
-
-//    @Test
-//    public void getTodoList_noParams() throws Exception {
-//            toDo.perform(get("/todo"))
-//                    .andDo(print())
-//                    .andExpect(status().isOk())
-//                    .andExpect(jsonPath("$.id").value(1))
-//                    .andExpect(jsonPath("$.description").value("Clean my Room"))
-//                    .andExpect(jsonPath("$.complete").value(false));
-//    }
+    List<ToDo> toDoList = new ArrayList<>();
+    @BeforeEach
+    public void populateNewToDoList() {
+        toDoList.clear();
+        toDoList.add(new ToDo(1,"Clean my room"));
+        toDoList.add(new ToDo(2,"Dishes"));
+        toDoList.add(new ToDo(3,"Walk the Dog"));
+        toDoList.add(new ToDo(4,"Brush Teeth"));
+        ToDo todo5 =  new ToDo(5,"Study");
+        todo5.setComplete(true);
+        toDoList.add(todo5);
+    }
 
     @Test
     public void getAll_Todos() throws Exception {
