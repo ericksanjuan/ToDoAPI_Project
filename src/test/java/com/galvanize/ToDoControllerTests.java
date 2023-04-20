@@ -71,7 +71,7 @@ public class ToDoControllerTests {
     @Test
     public void addNewToDoItem() throws Exception {
         String toDoJson = "{ \"id\": \"6\", \"description\": \"Buy groceries\", \"complete\": \"false\" }";
-        toDo.perform(post("/todo/additem")
+        toDo.perform(post("/todo/add")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(toDoJson))
                 .andDo(print())
@@ -80,5 +80,7 @@ public class ToDoControllerTests {
                 .andExpect(jsonPath("$.description").value("Buy groceries"))
                 .andExpect(jsonPath("$.complete").value(false));
     }
+
+
 
 }
