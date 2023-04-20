@@ -87,8 +87,14 @@ public class ToDoControllerTests {
     public void deleteToDoItemFromList() throws Exception {
         toDo.perform(delete("/todo/delete/5"))
                 .andDo(print())
-                .andExpect(status().isOk());
-
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$",hasSize(4)))
+                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].description").value("Clean my room"))
+                .andExpect(jsonPath("$[0].complete").value(false))
+                .andExpect(jsonPath("$[3].id").value(4))
+                .andExpect(jsonPath("$[3].description").value("Brush Teeth"))
+                .andExpect(jsonPath("$[3].complete").value(false));
 
     }
 
