@@ -91,4 +91,16 @@ public class ToDoController {
 
     }
 
+    @PatchMapping("/complete/{id}")
+    public ToDo markToDoComplete(@PathVariable Integer id) {
+            ToDo toDo = null;
+        for(ToDo item : toDoList) {
+            if (item.getId() == id) {
+                item.setComplete(true);
+                toDo = item;
+            }
+        }
+        return toDo;
+    }
+
 }
